@@ -4,7 +4,6 @@ import daw.project.apachas.entity.Event;
 import daw.project.apachas.entity.Product;
 import daw.project.apachas.entity.User;
 import daw.project.apachas.entity.UserProduct;
-import esei.tfg.apachas.entity.*;
 import daw.project.apachas.entity.id.UserProductId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
