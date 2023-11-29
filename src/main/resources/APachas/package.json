@@ -1,6 +1,7 @@
 {
   "name": "apachas",
   "version": "0.0.0",
+  "proxy": "http://apachas.up.railway.app/",
   "scripts": {
     "ng": "./node_modules/@angular/cli/bin/ng",
     "start": "./node_modules/.bin/ng serve --open --host 0.0.0.0",

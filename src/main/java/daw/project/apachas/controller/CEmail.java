@@ -12,7 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/email")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class CEmail {
 
     @Autowired

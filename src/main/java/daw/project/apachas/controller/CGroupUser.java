@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/groupsUsers")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class CGroupUser {
     @Autowired
     @Qualifier("SGroupUser")

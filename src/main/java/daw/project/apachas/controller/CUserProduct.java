@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/usersProducts")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class CUserProduct {
 
     @Autowired

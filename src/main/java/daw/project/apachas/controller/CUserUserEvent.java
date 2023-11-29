@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usersUsersEvents")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT, RequestMethod.OPTIONS, RequestMethod.DELETE, RequestMethod.OPTIONS})
 
 public class CUserUserEvent {
 

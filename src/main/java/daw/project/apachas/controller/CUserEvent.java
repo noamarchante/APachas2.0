@@ -19,7 +19,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/usersEvents")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.OPTIONS})
 public class CUserEvent {
 
     @Autowired

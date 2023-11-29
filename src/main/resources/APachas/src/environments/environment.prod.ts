@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  restApi: 'http://localhost:8080'
+  restApi: 'https://apachas.up.railway.app/'
 };
