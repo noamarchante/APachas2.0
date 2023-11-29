@@ -4,7 +4,7 @@
   "proxy": "http://apachas-api.up.railway.app",
   "scripts": {
     "ng": "./node_modules/@angular/cli/bin/ng",
-    "start": "./node_modules/.bin/ng serve --open --host https://apachas.up.railway.app/",
+    "start": "./node_modules/.bin/ng serve --open --host apachas.up.railway.app",
     "start-develop": "./node_modules/.bin/ng serve --open --host 0.0.0.0 --configuration development",
     "start-production": "./node_modules/.bin/ng serve --open --host 0.0.0.0 --configuration production",
     "build-develop": "./node_modules/.bin/ng build --configuration development",
