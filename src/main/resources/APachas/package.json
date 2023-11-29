@@ -11,9 +11,9 @@
     "build-production": "./node_modules/.bin/ng build --configuration production --output-hashing none",
     "test": "./node_modules/.bin/ng test"
   },
-  "private": true,
+  "private": false,
   "files": [
-    "dist"
+    "docs"
   ],
   "dependencies": {
     "@angular/animations": "~12.0.4",
