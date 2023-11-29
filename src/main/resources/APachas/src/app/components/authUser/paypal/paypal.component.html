@@ -1,0 +1,19 @@
+<!--<ngx-paypal [config]="payPalConfig"></ngx-paypal>-->
+
+<div *ngIf="!paidFor">
+
+    <h1>Buy this Couch - ${{ product.price }} OBO</h1>
+
+    <p>{{ product.description }}</p>
+
+
+</div>
+
+<div *ngIf=paidFor>
+    <h1>Yay, you bought a sweet couch!</h1>
+
+    <img src="assets/giphy.gif">
+</div>
+
+
+<div [hidden]="paidFor" #paypal></div>

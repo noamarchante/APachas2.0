@@ -1,0 +1,110 @@
+<section class="section">
+    <div class="row">
+        <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 imageCol">
+
+            <div class="row">
+                <div class="col-xxl-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 imageDiv">
+                    <ng-container *ngIf="authUser.photo; else imagesDiv">
+                        <img class="image" [src]="imageProfile" alt=""
+                             id="detailProfile_photo">
+                    </ng-container>
+                    <ng-template #imagesDiv>
+                        <img class="image" [src]="defaultImage">
+                    </ng-template>
+                </div>
+                <div class="col-xxl-12 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 titleclass">
+                    <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar perfil</button>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-xxl-8 col-xl-12 col-lg-12 col-md-12 col-sm-10 col-10 calendarDiv">
+            <div class="row text-center">
+                <!--BOTONES ANTERIOR HOY SIGUIENTE -->
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <div class="btn btn-primary"
+                             mwlCalendarPreviousView
+                             [view]="view"
+                             [(viewDate)]="viewDate"
+                             (viewDateChange)="closeOpenMonthViewDay()">
+                            Anterior
+                        </div>
+                        <div class="btn btn-primary"
+                             mwlCalendarToday
+                             [(viewDate)]="viewDate">
+                            Hoy
+                        </div>
+                        <div class="btn btn-primary"
+                             mwlCalendarNextView
+                             [view]="view"
+                             [(viewDate)]="viewDate"
+                             (viewDateChange)="closeOpenMonthViewDay()">
+                            Siguiente
+                        </div>
+                    </div>
+                </div>
+                <!-- FECHA ACTUAL -->
+                <div class="col-md-4">
+                    <h3 class="todayDate">{{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h3>
+                </div>
+                <!-- BOTONES MES SEMANA DIA -->
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <div class="btn btn-primary"
+                             (click)="setView(CalendarView.Month)"
+                             [class.active]="view === CalendarView.Month">
+                            Mes
+                        </div>
+                        <div class="btn btn-primary"
+                             (click)="setView(CalendarView.Week)"
+                             [class.active]="view === CalendarView.Week">
+                            Semana
+                        </div>
+                        <div class="btn btn-primary"
+                             (click)="setView(CalendarView.Day)"
+                             [class.active]="view === CalendarView.Day">
+                            Día
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--VISTAS DEL CALENDARIO -->
+            <div [ngSwitch]="view">
+                <!-- VISTA MENSUAL DEL CALENDARIO -->
+                <mwl-calendar-month-view
+                        *ngSwitchCase="CalendarView.Month"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [weekStartsOn]="1"
+                        [refresh]="refresh"
+                        [activeDayIsOpen]="activeDayIsOpen"
+                        (dayClicked)="dayClicked($event.day)"
+                        (eventClicked)="handleEvent( $event.event)">
+                </mwl-calendar-month-view>
+                <!-- VISTA SEMANAL DEL CALENDARIO -->
+                <mwl-calendar-week-view
+                        *ngSwitchCase="CalendarView.Week"
+                        [viewDate]="viewDate"
+                        [weekStartsOn]="1"
+                        [events]="events"
+                        [refresh]="refresh"
+                        (eventClicked)="handleEvent( $event.event)">
+                </mwl-calendar-week-view>
+                <!-- VISTA DIARIA DEL CALENDARIO -->
+                <mwl-calendar-day-view
+                        *ngSwitchCase="CalendarView.Day"
+                        [viewDate]="viewDate"
+                        [events]="events"
+                        [refresh]="refresh"
+                        (eventClicked)="handleEvent( $event.event)">
+                </mwl-calendar-day-view>
+            </div>
+        </div>
+    </div>
+    <app-editProfile [authUser] = "authUser"></app-editProfile>
+</section>
+

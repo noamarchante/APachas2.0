@@ -1,0 +1,148 @@
+<div class="modal fade" id="createProductModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="createProductLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title">{{title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (submit)="onSubmit();" ngNativeValidate #createProductForm="ngForm">
+                    <div class="col container-fluid">
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 file-input imageDiv">
+                                <input (change)="getImage($event)" accept="image/png,image/jpeg" class="file"
+                                       type="file"
+                                       id="createProduct_productPhoto" name="productPhoto">
+                                <label title="Cambiar imagen de producto" for="createProduct_productPhoto"
+                                       (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
+                                    <ng-container *ngIf="product.productPhoto; else imagesDiv">
+                                        <img class="image" [ngClass]="imageColor" [src]="product.productPhoto" alt=""
+                                             id="createProduct_photo">
+                                    </ng-container>
+                                    <ng-template #imagesDiv>
+                                        <img class="image imageColor2" [ngClass]="imageColor" [src]="defaultImage">
+                                    </ng-template>
+                                    <p class="imageText2" [ngClass]="imageText"></p>
+                                </label>
+                                <div *ngIf="imageFormat == false"
+                                     class="alert alert-danger">
+                                    <div *ngIf="imageFormat == false">Sólo JPG o PNG
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                <div class="row name-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <input type="text" id="createProduct_productName" name="productName"
+                                               class="inputs" placeholder="Nombre*" minlength="1" maxlength="40"
+                                               pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]+)*"
+                                               title="Puede contener letras, máximo 40 caracteres. Campo obligatorio"
+                                               [(ngModel)]="product.productName" required
+                                               #productNameForm="ngModel" value="gggg">
+                                        <div *ngIf="createProductForm.onSubmit(undefined) && productNameForm.invalid  || productNameForm.invalid && productNameForm.value != null"
+                                             class="alert alert-danger">
+                                            <div *ngIf="productNameForm.errors.required">Campo obligatorio
+                                            </div>
+                                            <div *ngIf="productNameForm.errors.pattern">Máximo 40 caracteres
+                                                alfanuméricos
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <textarea class="text-area inputs" name="productDescription" rows="4"
+                                                  cols="50"
+                                                  id="createProduct_productDescription" minlength="0"
+                                                  maxlength="100"
+                                                  name="productDescription" placeholder="Descripción"
+                                                  pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]+)*"
+                                                  title="Puede contener letras y números, máximo 100 caracteres"
+                                                  [(ngModel)]="product.productDescription"
+                                                  #productDescriptionForm="ngModel">
+                                        </textarea>
+                                        <div *ngIf="createProductForm.submitted && productDescriptionForm.invalid  || productDescriptionForm.invalid && productDescriptionForm.value!= null"
+                                             class="alert alert-danger">
+                                            <div *ngIf="productDescriptionForm.errors.pattern">Puede contener letras y
+                                                números, máximo 100 caracteres
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                <div class="daterangerpicker"
+                                     daterangepicker
+                                     [options]="options"
+                                     (selected)="selectedDate($event)"
+                                     (applyDaterangepicker)="applyDate()"
+                                     (cancelDaterangepicker)="cancelDate()">
+                                    <div class="d-flex justify-content-between h-100">
+                                        <span *ngIf="productPurchaseDate != undefined" class="ps-2 align-self-center">
+                                                        {{productPurchaseDate | date:'dd/MM/YYYY'}}
+                                        </span>
+                                        <span *ngIf="productPurchaseDate == undefined" class="placeholder align-self-center">
+                                                        Fecha*
+                                        </span>
+                                        <div class="align-self-center">
+                                            <span *ngIf="productPurchaseDate != undefined" class="cancel" (click)="cancelDate()">×</span>
+                                            <span class="ng-arrow-wrapper">
+                                                 <span class="btn ng-arrow"><i class="bi bi-calendar"></i></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                                <input type="number" class="text-area inputs" name="productQuantity"
+                                       id="createProduct_productQuantity" min="1"
+                                       name="productQuantity" placeholder="nº*"
+                                       pattern="[1-9]*" required
+                                       title="Puede contener un número"
+                                       [(ngModel)]="product.productQuantity"
+                                       #productQuantityForm="ngModel">
+                                <div *ngIf="createProductForm.onSubmit(undefined) && productQuantityForm.invalid  || productQuantityForm.invalid && productQuantityForm.value != null"
+                                     class="alert alert-danger">
+                                    <div *ngIf="productQuantityForm.errors.required">Campo obligatorio
+                                    </div>
+                                    <div *ngIf="productQuantityForm.errors.pattern">Número entero
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+                                <input type="number" class="text-area inputs" name="productCost"
+                                       id="createProduct_productCost" min="0.01" required
+                                       name="productCost" placeholder="Precio*" step="0.01"
+                                       pattern="^\d*(\.\d{0,2})?$"
+                                       title="Puede contener un número"
+                                       [(ngModel)]="product.productCost"
+                                       #productCostForm="ngModel">
+                                <div *ngIf="createProductForm.onSubmit(undefined) && productCostForm.invalid  || productCostForm.invalid && productCostForm.value != null"
+                                     class="alert alert-danger">
+                                    <div *ngIf="productCostForm.errors.required">Campo obligatorio
+                                    </div>
+                                    <div *ngIf="productCostForm.errors.pattern"> Número positivo con máximo dos decimales
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="buttons">
+                            <button type="button" id="closeProductButton" class="button close" data-bs-dismiss="modal" (click)="closeModal()">
+                                Cerrar
+                            </button>
+                        </div>
+                        <div class="buttons">
+                            <input type="submit" class="button" value="Guardar">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications></simple-notifications>

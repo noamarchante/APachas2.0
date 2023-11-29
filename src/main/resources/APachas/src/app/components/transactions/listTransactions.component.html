@@ -1,0 +1,73 @@
+<section>
+    <h6 class="title modal-title">{{event.eventName}}</h6>
+    <p class="subtitle modal-title">TRANSACCIONES</p>
+    <div class="searchDiv row">
+        <div class="col-xxl-8 col-xl-9 col-lg-4 col-md-5 col-sm-6 col-6 searchTransaction">
+            <form ngNativeValidate (input)="searchTransactionInput()" #searchTransactionsForm="ngForm">
+                <input type="search" id="events_transaction" name="transaction" placeholder="Buscar por nombre de participante"
+                       [(ngModel)]="transactionActorName" required #transactionActorForm="ngModel" aria-label="Search">
+            </form>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-xxl-2 row-cols-xl-2 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 row-cols-1 g-4 divAligment">
+        <div *ngFor="let transaction of transactions;let i=index">
+            <div class="col">
+                <div class="card mb-2" id="detailTransactionCard">
+                    <div class="row g-0">
+                        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5 divAligment">
+                            <ng-container *ngIf="getActor(transaction.senderId).userPhoto; else senderImagesDiv">
+                                <p class="imageP">
+                                    <img class="imageTransaction"
+                                         [src]="imagesPartakers[transaction.senderId]" alt="" id="detailSender_photo">
+                                </p>
+                            </ng-container>
+                            <ng-template #senderImagesDiv>
+                                <p class="imageP">
+                                    <img class="imageTransaction" [src]="defaultUserImage">
+                                </p>
+                            </ng-template>
+                            <div class="card-body-xxl-7 card-body-xl-7 card-body-lg-7 card-body-md-7 card-body-sm-7 card-body-7 divAligment">
+                                <h5 class="transactionTitle">{{getActor(transaction.senderId).userLogin}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 transactionDivAligment">
+                            <div class="row">
+                                <p class="transactionCard-text">
+                                    <a class="messageCost" [ngClass]="colorDebt(transaction.senderId, transaction.receiverId)">{{cost(transaction.cost)}}€</a>
+                                    </p>
+                            </div>
+
+
+                        </div>
+                        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5 divAligment receiver">
+                            <ng-container *ngIf="getActor(transaction.receiverId).userPhoto; else receiverImagesDiv">
+                                <p class="imageP">
+                                    <img class="imageTransaction"
+                                         [src]="imagesPartakers[transaction.receiverId]" alt="" id="detailReceiver_photo">
+                                </p>
+                            </ng-container>
+                            <ng-template #receiverImagesDiv>
+                                <p class="imageP">
+                                    <img class="imageTransaction" [src]="defaultUserImage">
+                                </p>
+                            </ng-template>
+                            <div class="card-body-xxl-7 card-body-xl-7 card-body-lg-7 card-body-md-8 card-body-sm-7 card-body-7 divAligment">
+                                <h5 class="transactionTitle">{{getActor(transaction.receiverId).userLogin}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="paginationDiv">
+        <ul class="row pagination">
+            <li class="page-item" [ngClass]="previous" *ngIf="transactionPage!=0"><a class="page-link previous" (click)="setTransactionPage(-1)">Anterior</a>
+            </li>
+            <li class="page-item" [ngClass]="next" *ngIf="transactionPage+1<totalTransactionPage"><a class="page-link next" (click)="setTransactionPage(1)">Siguiente</a>
+            </li>
+        </ul>
+    </div>
+</section>
+

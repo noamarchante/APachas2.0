@@ -1,0 +1,111 @@
+<div class="modal fade" id="createUserEventExpenseModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="createUserEventExpenseLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title">DINERO ADELANTADO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                <form (submit)="onEdit()"  ngNativeValidate #createUserEventExpenseForm="ngForm">
+                    <div class="col container-fluid">
+                        <div class="row">
+                            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <p class="text">{{showOperation}}</p>
+                                <input type="text" class="text-area inputs" name="totalExpense"
+                                       id="createUserEventExpense_totalExpense" required
+                                       name="totalExpense" placeholder="Precio*"
+                                       pattern="^\d*(\.\d{0,2})?$"
+                                       title="Dinero adelantado para el evento"
+                                       [(ngModel)]="userEvent.totalExpense"
+                                       #totalExpenseForm="ngModel">
+                                <div *ngIf="createUserEventExpenseForm.onSubmit(undefined) && totalExpenseForm.invalid || totalExpenseForm.invalid && totalExpenseForm.value != null"
+                                     class="alert alert-danger">
+                                    <div *ngIf="totalExpenseForm.errors.required">Campo obligatorio
+                                    </div>
+                                    <div *ngIf="totalExpenseForm.errors.pattern"> Número positivo con máximo dos decimales
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <button type="button" class="calculatorButton resetButton" (click)="calculator(-1,'C')">CLEAR</button>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                <button type="button" class="calculatorButton resetButton" (click)="calculator(-1,'R')">RESET</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(7,'')">7</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(8,'')">8</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(9,'')">9</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(-1,'/')">/</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(4,'')">4</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(5,'')">5</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(6,'')">6</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton"(click)="calculator(-1,'*')">x</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(1,'')">1</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(2,'')">2</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(3,'')">3</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(-1,'-')">-</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(0,'')">0</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton"(click)="calculator(-1,'.')">.</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(-1,'=')">=</button>
+                            </div>
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <button type="button" class="calculatorButton" (click)="calculator(-1,'+')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="buttons">
+                            <button type="button" id="closeButton" class="button close" data-bs-dismiss="modal" (click)="closeModal()">
+                                Cerrar
+                            </button>
+                        </div>
+                        <div class="buttons">
+                            <input type="submit" class="button" value="Guardar">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications></simple-notifications>

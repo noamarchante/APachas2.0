@@ -1,0 +1,40 @@
+<section>
+    <div class="container">
+        <div class="user signinBx">
+            <div class="imgBx"><img src="../../../../../assets/LoginMoney.jpg" alt="Imagen decorativa de billetes para login"></div>
+            <div class="formBx">
+                <form (submit)="logIn()" ngNativeValidate #loginForm="ngForm">
+                    <h2>Iniciar sesión en <a href=""><br>¡A pachas!</a></h2>
+                    <div>
+                        <input type="text" id="login_userLogin" name="userLogin" placeholder="Nombre de usuario"
+                               pattern="[a-zA-ZñÑ0-9_-]{1,100}" title="Must be an alphanumeric"
+                               [(ngModel)]="login" required #usernameForm="ngModel">
+                        <div *ngIf="loginForm.submitted && usernameForm.invalid" class="alert alert-danger">
+                            <div *ngIf="usernameForm.errors.required">Username is required.</div>
+                            <div *ngIf="usernameForm.errors.pattern">Username can only contain letters, numbers or
+                                underscore and should
+                                have a length between 1 and 100.
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="password" id="login_userPassword" name="userPassword" placeholder="Contraseña"
+                               [(ngModel)]="password" required #passwordForm="ngModel" minlength="6">
+                        <div *ngIf="loginForm.submitted && passwordForm.invalid" class="alert alert-danger">
+                            <div *ngIf="passwordForm.errors.required">Password is required.</div>
+                            <div *ngIf="passwordForm.errors.minlength">Password can't be shorter than 6 characters.
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" value="Iniciar sesión">
+                    <p class="signup">¿has olvidado tu contraseña? <a href="" data-bs-toggle="modal" data-bs-target="#retrievePasswordEmailModal"> Recupérala</a></p>
+                    <p class="signup">¿no tienes una cuenta? <a href="register"> Regístrate</a></p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<app-retrievePasswordEmail></app-retrievePasswordEmail>
+
+<simple-notifications></simple-notifications>

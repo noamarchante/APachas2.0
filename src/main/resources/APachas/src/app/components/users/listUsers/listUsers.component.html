@@ -1,0 +1,46 @@
+<div class="searchDiv col-auto text-center">
+    <form ngNativeValidate (input)="searchInput()" #searchUsersForm="ngForm">
+        <input type="search" id="friend_nameLogin" name="nameLogin" placeholder="Buscar por nombre de usuario"
+               [(ngModel)]="login" required #userLoginForm="ngModel" aria-label="Search">
+    </form>
+</div>
+<app-detailUser (eventDetail)="setSelectedUser($event)" (eventMessage)="getUsers()" [user]="selectedUser" [previous] = "getPrevious()" [next] = "getNext()" [status]="status"></app-detailUser>
+<div class="row row-cols-1 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 g-4">
+    <ng-container *ngIf="users.length !=0; else usersDiv">
+        <div *ngFor="let user of users">
+            <div class="col">
+                <div class="card mb-3 color" data-bs-toggle="modal" data-bs-target="#detailUserModal" (click)="selectUser(users.indexOf(user))">
+                    <div class="row g-0">
+                        <div class="col-xxl-5 col-xl-12 col-lg-5 col-md-12 col-sm-5">
+                            <ng-container *ngIf="user.userPhoto; else imagesDiv">
+                                <img class="image" [src]="images[user.userId]" alt="foto de usuario">
+                            </ng-container>
+                            <ng-template #imagesDiv>
+                                <img class="image" [src]="defaultImage" alt="foto por defecto">
+                            </ng-template>
+                        </div>
+                        <div class="col-xxl-7 col-xl-12 col-lg-7 col-md-12 col-sm-7">
+                            <div class="card-body-xxl-7 card-body-xl-12 card-body-lg-7 card-body-md-12 card-body-sm-7">
+                                <h5 class="title">{{user.userLogin}}</h5>
+                                <p class="card-text">
+                                    <a class="message" aria-label="solicitud de amistad">{{friends[user.userId]}}</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #usersDiv>
+       <p class="text">NO EXISTEN USUARIOS</p>
+    </ng-template>
+</div>
+<div class="paginationDiv">
+    <ul class="row pagination">
+        <li class="page-item" [ngClass]="previous" *ngIf="page!=0"><a class="page-link previous" aria-label="anterior" (click)="setPage(-1)">Anterior</a>
+        </li>
+        <li class="page-item" [ngClass]="next" *ngIf="page+1<totalPage"><a class="page-link next" aria-label="siguiente" (click)="setPage(1)">Siguiente</a>
+        </li>
+    </ul>
+</div>

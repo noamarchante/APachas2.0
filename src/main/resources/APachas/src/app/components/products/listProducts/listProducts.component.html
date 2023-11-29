@@ -1,0 +1,172 @@
+<section class="section">
+    <div class="row">
+        <div class="col-xxl-3 col-xl-2 col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="imageEventDiv">
+                <ng-container *ngIf="event.eventPhoto; else imagesDiv">
+                    <img class="imageEvent" [src]="imageEvent" alt=""
+                         id="detailUserEvent_photo">
+                </ng-container>
+                <ng-template #imagesDiv>
+                    <img class="imageEvent" [src]="defaultEventImage">
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-6 col-12">
+            <h5 class="row modal-title title eventTitle">
+                {{event.eventName}}
+            </h5>
+            <div class="row date text">
+                <img class="icon" src="./assets/date.svg" alt=""
+                     id="detailUserEvent_date">
+                {{event.eventStart | date: 'dd-MM-yyyy HH:mm'}}<br>
+                {{event.eventEnd | date: 'dd-MM-yyyy HH:mm'}}
+            </div>
+            <div class="row description-row text"
+                 name="eventLocation"
+                 id="detailEvent_eventLocation">
+                <img class="icon" src="./assets/location.svg" alt=""
+                     id="detailUserEvent_location">
+                {{event.eventLocation}}
+            </div>
+            <div class="row description-row text"
+                     name="eventDescription"
+                     id="detailEvent_eventDescription">
+                <img class="icon" src="./assets/comment.svg" alt=""
+                     id="detailUserEvent_description">
+                {{event.eventDescription}}
+            </div>
+        </div>
+        <div class="paginationPartakerDiv col-xxl-5 col-xl-5 col-lg-4 col-md-12 col-sm-12 col-12">
+            <div class="row">
+                <div *ngFor="let user of eventPartakers" class="col-xxl-4 col-xl-4 col-lg-6 col-md-4 col-sm-4 col-5 partakerDiv">
+                    <ng-container *ngIf="user.userPhoto; else userImagesDiv">
+                        <p title="{{ownerLabel(user.userId)}}" class="imageP">
+                            <img class="imagePartaker" [ngClass]="ownerBorder(user.userId)"
+                                 [src]="imagesPartakers[user.userId]" alt="" id="detailUser_photo">
+                        </p>
+                        <p title="{{ownerLabel(user.userId)}}" class="partaker">
+                            {{user.userLogin}}
+                        </p>
+                    </ng-container>
+                    <ng-template #userImagesDiv>
+                        <p title="{{ownerLabel(user.userId)}}" class="imageP">
+                            <img class="imagePartaker" [ngClass]="ownerBorder(user.userId)" [src]="defaultUserImage">
+                        </p>
+                        <p title="{{ownerLabel(user.userId)}}" class="partaker">
+                            {{user.userLogin}}
+                        </p>
+                    </ng-template>
+                    <app-createUserEventExpense (eventSave)="getAuthUserEvent()" [userEvent]="authUserEvent"></app-createUserEventExpense>
+                </div>
+                <div *ngIf="eventPartakers.length > sizePartaker" [ngClass]="previousMember" class="more" (click)="getLessPartakers()"><a>
+                    Ver menos</a></div>
+                <div *ngIf="eventPartakers.length < totalPartaker" [ngClass]="nextMember" class="more" (click)="getMorePartakers()"><a>
+                    Ver más</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="row moneyCircles">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 circle">
+            <div class="money">
+                <p  title="Dinero que he aportado al evento" class="partakerExpense">
+                    {{cost(totalExpense)}}€
+                </p>
+                <p  title="Dinero que he aportado al evento" class="partakerTextExpense">
+                    Dinero adelantado
+                </p>
+            </div>
+            <div class="moneyButton">
+                <button *ngIf="event.eventOpen" type="button" class="button" data-bs-toggle="modal" data-bs-target="#createUserEventExpenseModal">Añadir</button>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 circle">
+            <div class="money">
+                <p class="partakerExpense" title="Dinero que he gastado en el evento">
+                    {{cost(debt)}}€
+                </p>
+                <p class="partakerTextExpense" title="Dinero que he gastado en el evento">
+                    Dinero gastado
+                </p>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 circle">
+            <div class="money">
+                <p  title="Dinero total adelantado al evento" class="partakerExpense">
+                    {{cost(totalEventExpense)}}€
+                </p>
+                <p  title="Dinero total adelantado al evento" class="partakerTextExpense">
+                    Dinero total adelantado
+                </p>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6 circle">
+            <div class="money">
+                <p  title="Dinero total gastado en el evento" class="partakerExpense">
+                    {{cost(totalProductCost)}}€
+                </p>
+                <p  title="Dinero total gastado en el evento" class="partakerTextExpense">
+                    Dinero total gastado
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <h6 class="subtitle modal-title">PRODUCTOS</h6>
+    <div class="searchDiv row">
+        <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-7 search">
+            <form ngNativeValidate (input)="searchProductInput()" #searchProductsForm="ngForm">
+                <input type="search" id="events_productName" name="productName" placeholder="Buscar por nombre de producto"
+                       [(ngModel)]="productName" required #productNameForm="ngModel" aria-label="Search">
+            </form>
+        </div>
+        <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 createDiv">
+            <button *ngIf="event.eventOpen" type="button" class="addButton" data-bs-toggle="modal" data-bs-target="#createProductModal" (click)="setProduct();">Añadir</button>
+        </div>
+    </div>
+    <app-createProduct (eventSave)="getProducts();" [product]="selectedProduct" [eventId]="event.eventId"></app-createProduct>
+
+    <app-detailProduct (eventDelete)="getProducts();" (statusUpdate)="getProducts();" (eventDetail)="setSelectedProduct($event)" [product]="selectedProduct" [previous] = "getProductPrevious()" [next] = "getProductNext()" [open]="event.eventOpen" [status] ="selectedStatus"></app-detailProduct>
+
+    <div class="row row-cols-1 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 g-4 divAligment">
+        <ng-container *ngIf="products.length!= 0; else productsDiv">
+            <div *ngFor="let product of products;let i=index">
+                <div class="col">
+                    <div class="card mb-3 color" id="detailProductCard" data-bs-toggle="modal" data-bs-target="#detailProductModal"
+                         (click)="selectProduct(i)">
+                        <div class="row g-0">
+                            <div class="col-xxl-5 col-xl-12 col-lg-5 col-md-12 col-sm-5 divAligment">
+                                <ng-container *ngIf="product.productPhoto != null; else imagesDiv">
+                                    <img class="image" [src]="imagesProducts[product.productId]">
+                                </ng-container>
+                                <ng-template #imagesDiv>
+                                    <img class="image" [src]="defaultImage">
+                                </ng-template>
+                            </div>
+                            <div class="col-xxl-7 col-xl-12 col-lg-7 col-md-12 col-sm-7 divAligment">
+                                <div class="card-body-xxl-7 card-body-xl-12 card-body-lg-7 card-body-md-12 card-body-sm-7 divAligment">
+                                    <h5 class="title">{{product.productName}}</h5>
+                                    <p class="card-text">
+                                        <a class="message">{{messageStatus(product.productId)}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #productsDiv>
+            <p class="text">No existen productos</p>
+        </ng-template>
+    </div>
+    <div class="paginationDiv">
+        <ul class="row pagination">
+            <li class="page-item" [ngClass]="previous" *ngIf="productPage!=0"><a class="page-link previous" (click)="setProductPage(-1)">Anterior</a>
+            </li>
+            <li class="page-item" [ngClass]="next" *ngIf="productPage+1<totalProductPage"><a class="page-link next" (click)="setProductPage(1)">Siguiente</a>
+            </li>
+        </ul>
+    </div>
+</section>
+

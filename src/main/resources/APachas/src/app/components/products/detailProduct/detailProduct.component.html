@@ -1,0 +1,103 @@
+<div class="modal fade" id="detailProductModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="detailProductLabel" aria-hidden="true">
+    <app-messageConfirm (eventMessageConfirm)="onDelete($event)" [message]=message></app-messageConfirm>
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title">{{product.productName}}</h5>
+                <div *ngIf="open" class="dropdown">
+                    <a class="btn btn-neutral dropdown-toggle drop" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="zmdi zmdi-label"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li>
+                            <button type="button" data-bs-dismiss="modal" class="dropdown-item buttonText" title="Cambiar de estado" (click)="setStatus();">{{status}}</button>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item buttonText" title="Editar producto"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#createProductModal"
+                                    (click)="pagePartaker=0">Editar producto</button>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item buttonText" title="Eliminar producto"  data-bs-toggle="modal" data-bs-target="#messageConfirmModal"
+                                    (click)="messageValue();pagePartaker=0">Eliminar producto</button>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" id="closeButton" class="btn-close closeButton" data-bs-dismiss="modal"
+                        aria-label="Close"
+                        (click)="pagePartaker=0"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col container-fluid">
+                    <div class="row">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="imageProductDiv">
+                                <ng-container *ngIf="product.productPhoto; else imagesDiv">
+                                    <img class="imageProduct" [src]="product.productPhoto" alt=""
+                                         id="detailProduct_photo">
+                                </ng-container>
+                                <ng-template #imagesDiv>
+                                    <img class="imageProduct" [src]="defaultImage">
+                                </ng-template>
+                                <div class="date text">
+                                    Fecha de compra: {{product.productPurchaseDate | date: 'dd-MM-yyyy'}}
+                                </div>
+
+                            </div>
+                            <div class="text"
+                                 name="productQuantityAndCost"unidades
+                                 id="detailProduct_productAmount">
+                                <img class="icon" src="./assets/amount.svg" alt="">{{product.productQuantity}}
+                                <img class="icon" src="./assets/money.svg" alt="">{{product.productCost}}€
+                            </div>
+                            <div class="description-row text"
+                                 name="productDescription"
+                                 id="detailProduct_productDescription">
+                                <img class="icon" src="./assets/comment.svg" alt="">{{product.productDescription}}
+                            </div>
+                        </div>
+                        <div class="paginationMemberDiv col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="row">
+                                <div *ngFor="let user of productPartakers" class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-6 productMember">
+                                    <ng-container *ngIf="user.userPhoto; else userImagesDiv">
+                                        <p class="imageP">
+                                            <img class="imageMember"
+                                                 [src]="user.userPhoto" alt="" id="detailUser_photo">
+                                        </p>
+                                        <p class="member">
+                                            {{user.userLogin}}
+                                        </p>
+                                    </ng-container>
+                                    <ng-template #userImagesDiv>
+                                        <p class="imageP">
+                                            <img class="imageMember" [src]="defaultUserImage">
+                                        </p>
+                                        <p class="member">
+                                            {{user.userLogin}}
+                                        </p>
+                                    </ng-template>
+                                </div>
+                                <div *ngIf="productPartakers.length > sizePartaker" class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 more" (click)="getLessPartakers()"><a>
+                                    Ver menos</a></div>
+                                <div *ngIf="productPartakers.length < totalPartaker" class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 more" (click)="getMorePartakers()"><a>
+                                    Ver más</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <ul class="row paginationProduct">
+                            <li [ngClass]="previousProduct" *ngIf="previous">
+                                <a class="previousProduct" (click)="setPageProduct(-1); pagePartaker=0">Anterior</a>
+                            </li>
+                            <li [ngClass]="nextProduct" *ngIf="next">
+                                <a class="nextProduct" (click)="setPageProduct(1); pagePartaker=0">Siguiente</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications></simple-notifications>

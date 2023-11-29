@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+{
+    border-collapse: collapse;
+    border-spacing: 10px 5px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.searchDiv
+{
+    padding-top: 50px;
+    padding-bottom: 30px;
+    background: #fff;
+}
+
+.searchDiv input {
+    width: 150%;
+    padding: 10px;
+    color: #333;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    background: url("../../../../assets/search.svg")  top left no-repeat #f5f5f5;
+    background-size: 1rem;
+    background-position-y: 13px;
+    background-position-x: 5px;
+    padding-left:30px;
+}
+input[type="search"]::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    background-image: url("../../../../assets/closeSearch.svg");
+    background-size: 0.8rem 0.8rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    cursor:pointer;
+}
+
+.col{
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.color:hover{
+    background: rgba(102, 187, 106, 0.12);
+    cursor:pointer;
+}
+
+.card{
+    border: none;
+}
+
+.col-xxl-5{
+    text-align: center;
+}
+.col-xl-12{
+    text-align: center;
+}
+.col-md-12{
+    text-align: center;
+}
+.col-sm-5{
+    text-align: center;
+}
+
+.image {
+    width:173px;
+    height:173px;
+    border-radius:90px;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+}
+
+.col-xxl-7{
+    align-self: center;
+}
+.col-xl-12{
+    align-self: center;
+}
+.col-sm-7{
+    align-self: center;
+}
+
+.card-body-xxl-7{
+    text-align: center;
+}
+
+.card-body-xl-12{
+    text-align: center;
+}
+
+.card-body-md-12{
+    text-align: center;
+}
+
+.card-body-sm-7{
+    text-align: center;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.card-text{
+    padding-top: 5px;
+    text-align: right;
+}
+
+.status
+{
+    cursor:pointer;
+    border: none;
+    width: 13px;
+    height: 13px;
+    padding-right: 15px;
+    background: url("../../../../assets/right.svg") top left no-repeat;
+    background-position: center;
+    background-size: 13px 13px;
+}
+
+.message
+{
+    cursor:pointer;
+    text-decoration: none;
+    color: #236726;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding-right: 5px;
+}
+
+.accept
+{
+    border: none;
+    width: 14px;
+    height: 14px;
+    padding-right: 15px;
+    background: url("../../../../assets/check.svg") top left no-repeat;
+    background-size: 14px 14px;
+}
+
+.refuse
+{
+    border: none;
+    width: 14px;
+    height: 14px;
+    background: url("../../../../assets/close.svg")  top left no-repeat;
+    background-size: 14px 14px;
+}
+
+div.paginationDiv {
+    padding-top: 10px;
+}
+
+ul li {
+    display: inline;
+}
+
+ul li a {
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    background: #f5f5f5;
+    color: #333;
+    outline: none;
+}
+
+ul li:first-child a
+{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor:pointer;
+
+}
+
+ul li:last-child a
+{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor:pointer;
+}
+
+.previous{
+    float: left;
+}
+
+.next{
+    float: right;
+}
+
+/*XXL*/
+@media (min-width: 1400px) {
+    .card-text{
+        padding-right: 20px;
+    }
+    .searchDiv input {
+        width: 23%;
+    }
+}
+
+/*XL*/
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .title{
+        padding-top: 20px;
+    }
+    .card-text{
+        text-align: center;
+    }
+    .searchDiv input {
+        width: 27%;
+    }
+}
+
+/*L*/
+@media (min-width: 993px) and (max-width: 1200px) {
+    .card-text{
+        padding-right: 30px;
+    }
+    .searchDiv input {
+        width: 33%;
+    }
+}
+
+/*M*/
+@media (min-width: 768px) and (max-width: 992px) {
+    .title{
+        padding-top: 20px;
+    }
+    .card-text{
+        text-align: center;
+    }
+    .searchDiv input {
+        width: 42%;
+    }
+}
+
+/*S*/
+@media (min-width: 576px) and (max-width: 768px) {
+    .card-text{
+        padding-right: 45px;
+    }
+    .searchDiv input {
+        width: 57%;
+    }
+}
+
+/*XS*/
+@media (max-width: 576px) {
+    .title{
+        padding-top: 20px;
+    }
+    .card-text{
+        text-align: center;
+    }
+    .searchDiv input {
+        width: 55%;
+    }
+}

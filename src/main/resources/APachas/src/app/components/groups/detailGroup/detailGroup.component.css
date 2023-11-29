@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.title{
+    padding-top: 5px;
+    padding-right: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: right;
+    width: 55%;
+    color: #555;
+}
+
+.icon{
+    width: 25px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: rgba(102, 187, 106, 0.1);
+}
+
+.row{
+    padding-bottom: 10px;
+}
+
+.col{
+    text-align: center;
+}
+
+.imageGroupDiv{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.imageGroup {
+    width:173px;
+    height:173px;
+    border-radius:90px;
+    background-color: white;
+}
+
+.description-row{
+    text-align: left !important;
+    padding-left: 10px;
+}
+
+.text{
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    color: #333;
+    outline: none;
+}
+
+.drop{
+    margin-top: 5px;
+    margin-left: -5px;
+
+}
+
+.buttonText{
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 300;
+    color: #333;
+    outline: none;
+}
+
+div.paginationMemberDiv {
+    padding-top: 10px;
+    height: 290px;
+    overflow: scroll;
+    border-left-style: solid;
+    border-color:  #f5f5f5;
+}
+
+.paginationMemberDiv::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+
+.paginationMemberDiv::-webkit-scrollbar:vertical{
+    width: 10px;
+}
+
+.paginationMemberDiv::-webkit-scrollbar-button:increment, .paginationMemberDiv::-webkit-scrollbar-button{
+    display: none;
+}
+
+.paginationMemberDiv::-webkit-scrollbar:horizontal{
+    height: 10px;
+}
+
+.paginationMemberDiv::-webkit-scrollbar-thumb{
+    background: #f1f1f1;
+    border-radius: 20px;
+    border: 2px solid #f1f1f1;
+}
+
+.paginationMemberDiv::-webkit-scrollbar-track{
+    border-radius: 10px;
+}
+
+.imageMember {
+    width:100px;
+    height:100px;
+    border-radius:90px;
+    background-color: white;
+}
+
+.imageP{
+    width: 100%;
+}
+
+.member{
+    margin-top: -8px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #333;
+    width:100%;
+}
+
+.owner{
+    border-style: solid;
+    border-color: rgba(102, 187, 106, 0.53);
+}
+
+.date{
+    font-size: 10px;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.modal-body{
+    margin-bottom: -25px;
+}
+ul.paginationUserGroup{
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    width: 100%;
+}
+
+ul.paginationUserGroup li {
+    display: inline;
+    border: none;
+}
+
+ul.paginationUserGroup li a {
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    background: #f5f5f5;
+    color: #333;
+    outline: none;
+}
+
+ul.paginationUserGroup li:first-child a
+{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor:pointer;
+
+}
+
+ul.paginationUserGroup li:last-child a
+{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor:pointer;
+}
+
+.previousUserGroup{
+    float: left;
+}
+
+.editDiv{
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+.deleteDiv{
+    padding-top: 5px;
+}
+.editButton{
+    cursor:pointer;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: url("../../../../assets/edit.svg") top left no-repeat;
+    background-size: 40px 40px;
+}
+
+.more a{
+    position: relative;
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #236726;
+    cursor:pointer;
+    vertical-align: center;
+}
+.more{
+    display:flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 20px;
+}
+
+.more a:hover{
+    text-decoration: underline !important;
+}
+
+.deleteButton{
+    cursor:pointer;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: url("../../../../assets/delete.svg") top left no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
+}
+
+.nextUserGroup{
+    float: right;
+}
+
+.previousUserGroup{
+    float: left;
+}
+
+.closeButton{
+    margin-top: -50px;
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .title{
+        margin-left: 4% !important;
+    }
+}
+@media (min-width: 485px) and (max-width: 576px) {
+    .title{
+        margin-left: 6% !important;
+    }
+}
+
+@media (min-width: 280px) and (max-width: 485px) {
+    .title{
+        margin-left: 10% !important;
+    }
+}
+
+@media (max-width: 349px) {
+
+    ul.paginationUserGroup li {
+        padding-bottom: 20px;
+    }
+    .previousUserGroup{
+        float: none;
+        margin-left: -40px;
+    }
+
+    .members{
+        margin-left: 25% !important;
+    }
+
+    .nextUserGroup{
+        float: none;
+    }
+
+    div.paginationMemberDiv {
+        height: 145px;
+        border-left-style: none;
+    }
+
+    .editDiv{
+        padding-left: 15px;
+    }
+}

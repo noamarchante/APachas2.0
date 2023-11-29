@@ -1,0 +1,194 @@
+<div class="modal fade" id="createEventModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="createEventLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title">{{title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (submit)="onSubmit();" ngNativeValidate #createEventForm="ngForm">
+                     <div class="col container-fluid">
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 file-input imageDiv">
+                                    <input (change)="getImage($event)" accept="image/png,image/jpeg" class="file"
+                                               type="file"
+                                               id="createEvent_eventPhoto" name="eventPhoto">
+                                    <label title="Cambiar imagen de evento" for="createEvent_eventPhoto"
+                                               (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
+                                        <ng-container *ngIf="event.eventPhoto; else imagesDiv">
+                                            <img class="image imageColor2" [ngClass]="imageColor" [src]="event.eventPhoto" alt="foto de evento"
+                                                     id="createEvent_photo">
+                                        </ng-container>
+                                        <ng-template #imagesDiv>
+                                            <img class="image imageColor2" [ngClass]="imageColor" [src]="defaultImage" alt="foto de evento por defecto">
+                                        </ng-template>
+                                        <p class="imageText2" [ngClass]="imageText"></p>
+                                    </label>
+                                    <div *ngIf="imageFormat == false"
+                                             class="alert alert-danger">
+                                        <div *ngIf="imageFormat == false">Sólo JPG o PNG
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                <div class="row name-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <input type="text" id="createEvent_eventName" name="eventName"
+                                                   class="inputs" placeholder="Nombre*" minlength="1" maxlength="40"
+                                                   pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]+)*"
+                                                   title="Puede contener letras, máximo 40 caracteres. Campo obligatorio"
+                                                   [(ngModel)]="event.eventName" required
+                                                   #eventNameForm="ngModel">
+                                        <div *ngIf="createEventForm.onSubmit(undefined) && eventNameForm.invalid  || eventNameForm.invalid && eventNameForm.value != null"
+                                                 class="alert alert-danger">
+                                            <div *ngIf="eventNameForm.errors.required">Campo obligatorio
+                                            </div>
+                                            <div *ngIf="eventNameForm.errors.pattern">Máximo 40 caracteres
+                                                    alfanuméricos
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <textarea class="text-area inputs" name="eventDescription" rows="4"
+                                                      cols="50"
+                                                      id="createEvent_eventDescription" minlength="0"
+                                                      maxlength="100"
+                                                      name="eventDescription" placeholder="Descripción"
+                                                      pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]+)*"
+                                                      title="Puede contener letras y números, máximo 100 caracteres"
+                                                      [(ngModel)]="event.eventDescription"
+                                                      #eventDescriptionForm="ngModel">
+                                        </textarea>
+                                        <div *ngIf="createEventForm.submitted && eventDescriptionForm.invalid  || eventDescriptionForm.invalid && eventDescriptionForm.value!= null"
+                                                 class="alert alert-danger">
+                                            <div *ngIf="eventDescriptionForm.errors.pattern">Puede contener letras y
+                                                    números, máximo 100 caracteres
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row secondDiv">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                               <div class="daterangerpicker"
+                                                 daterangepicker
+                                                 [options]="options"
+                                                 (selected)="selectedDate($event)"
+                                                 (applyDaterangepicker)="applyDate()"
+                                                 (cancelDaterangepicker)="cancelDate()">
+                                    <div class="d-flex justify-content-between h-100">
+                                        <span *ngIf="initialDate != undefined" class="ps-2 align-self-center">
+                                                        {{initialDate | date:'dd/MM/YYYY HH:mm'}} {{finalDate | date:'dd/MM/YYYY HH:mm'}}
+                                        </span>
+                                        <span *ngIf="initialDate == undefined" class="placeholder align-self-center">
+                                                        Fecha y Hora*
+                                        </span>
+                                        <div class="align-self-center">
+                                            <span *ngIf="initialDate != undefined" class="cancel" (click)="cancelDate()">×</span>
+                                            <span class="ng-arrow-wrapper">
+                                                 <span class="btn ng-arrow"><i class="bi bi-calendar"></i></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                               <input type="text" id="createEvent_eventLocation" name="Location"
+                                                   class="inputs" placeholder="Localización" minlength="1" maxlength="40"
+                                                   pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]+)*"
+                                                   title="Puede contener letras, máximo 40 caracteres. Campo obligatorio"
+                                                   [(ngModel)]="event.eventLocation" required
+                                                   #eventLocationForm="ngModel">
+                               <div *ngIf="createEventForm.onSubmit(undefined) && eventLocationForm.invalid  || eventLocationForm.invalid && eventLocationForm.value != null"
+                                                 class="alert alert-danger">
+                                    <div *ngIf="eventLocationForm.errors.required">Campo obligatorio
+                                    </div>
+                                    <div *ngIf="eventLocationForm.errors.pattern">Máximo 40 caracteres
+                                                    alfanuméricos
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="row selectRow">
+                            <ng-select name="groups"
+                                               [items]="selectPartakers"
+                                               bindValue="userId"
+                                               groupBy="groupId"
+                                               placeholder="Participantes"
+                                               (change)="changeSelect($event)"
+                                               (remove)="removePartaker($event)"
+                                               (clear)="clearPartakers()"
+                                               [multiple]="true"
+                                               [closeOnSelect]="false"
+                                               [selectableGroup]="true"
+                                               [selectableGroupAsModel]="false"
+                                               [(ngModel)]="eventPartakers">
+                                <ng-template class="text" ng-multi-label-tmp let-items="items" let-clear="clear">
+                                    <div class="ng-value" *ngFor="let item of items">
+                                        <ng-container *ngIf="item.userPhoto; else userPhotoDiv">
+                                            <span class="ng-value-label" title="{{item.userLogin}}"><img alt="foto de usuario"
+                                                        [src]="item.userPhoto" class="imageSelect"><p
+                                                        class="selectedText">{{item.userLogin}}</p></span>
+                                        </ng-container>
+                                        <ng-template #userPhotoDiv>
+                                            <span class="ng-value-label" title="{{item.userLogin}}"><img alt="foto de usuario por defecto"
+                                                        [src]="defaultUserImage" class="imageSelect"><p
+                                                        class="selectedText">{{item.userLogin}}</p></span>
+                                        </ng-template>
+                                        <span class="ng-value-icon right" (click)="clear(item)"
+                                                      aria-hidden="true">×</span>
+                                    </div>
+                                </ng-template>
+                                <ng-template ng-option-tmp let-item="item">
+                                    <ng-container *ngIf="item.userPhoto; else userPhotoDiv">
+                                        <span class="ng-value-label" id="{{item.groupId + '-'+ item.userId}}" title="{{item.userLogin}}"><img alt="foto de usuario de grupo"
+                                                        [src]="item.userPhoto" class="imageSelect"><p
+                                                        class="selectedText listSelect">{{item.userLogin}}</p></span>
+                                    </ng-container>
+                                    <ng-template #userPhotoDiv>
+                                        <span class="ng-value-label" id="{{item.groupId + '-'+item.userId}}" title="{{item.userLogin}}"><img alt="foto de usuario de grupo por defecto"
+                                                        [src]="defaultUserImage" class="imageSelect"><p
+                                                        class="selectedText listSelect">{{item.userLogin}} </p></span>
+                                    </ng-template>
+                                </ng-template>
+                                <ng-template ng-optgroup-tmp let-item="item">
+                                    <ng-container *ngIf="getPartakersByGroupId(item.groupId).groupPhoto; else groupPhotoDiv">
+                                        <span class="ng-value-label" title="{{getPartakersByGroupId(item.groupId).groupName}}"><img alt="foto de grupo"
+                                                        [src]="getPartakersByGroupId(item.groupId).groupPhoto" class="imageSelect"><p
+                                                        class="selectedText listSelect">{{getPartakersByGroupId(item.groupId).groupName}}</p></span>
+                                    </ng-container>
+                                    <ng-template #groupPhotoDiv>
+                                        <span class="ng-value-label" title="{{getPartakersByGroupId(item.groupId).groupName}}"><img alt="foto de grupo por defecto"
+                                                        [src]="defaultGroupImage" class="imageSelect" *ngIf="item.groupId !=0"><p
+                                                        class="selectedText listSelect">{{getPartakersByGroupId(item.groupId).groupName}} </p></span>
+                                        <span (click)="unselectGroup(item.groupId)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                                <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                            </svg>
+                                        </span>
+                                    </ng-template>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="buttons">
+                                <button type="button" id="closeButton" class="button close" data-bs-dismiss="modal" (click)="closeModal()">
+                                    Cerrar
+                                </button>
+                            </div>
+                            <div class="buttons">
+                                <input type="submit" class="button" value="Guardar">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications></simple-notifications>

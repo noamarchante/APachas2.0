@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar-light{
+    background-color: rgba(102, 187, 106, 0.05) !important;
+}
+.navbar{
+    padding: 10px;
+}
+
+.nav-item{
+    padding-left: 10px;
+}
+
+.not{
+    margin-top: 30px;
+    margin-right: 10px;
+
+}
+
+.notButton{
+    width: 20px;
+    height: 50px;
+    background: url("../../src/assets/alert.svg") top left no-repeat ;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #555;
+}
+
+.text{
+    text-decoration: none;
+    box-shadow: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 400;
+    color: #333;
+    outline: none;
+}
+
+
+.textDrop{
+    text-decoration: none;
+    box-shadow: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 400;
+    color: #333;
+    outline: none;
+}
+
+.textDrop:hover{
+    background-color: rgba(102, 187, 106, 0.1);
+    cursor: pointer;
+}
+
+.dropdown-toggle{
+    text-align: right;
+}
+
+.dropdown-menu{
+    margin-left: -13rem;
+}
+
+.notification-menu{
+    margin-left: -24rem;
+}
+
+.logo{
+    width: 200px;
+}
+
+.image {
+    width:60px;
+    height:60px;
+    border-radius:90px;
+    background-color: white;
+}
+
+@media (min-width: 654px) and (max-width: 768px){
+    .profile{
+        margin-right: 45%;
+    }
+    .dropdown-menu{
+        margin-left: 0rem;
+
+    }
+
+
+    .notButton{
+        margin-left: 49%;
+    }
+
+    .start-100{
+        margin-left: -47% !important;
+    }
+
+
+}
+
+@media (min-width: 420px) and (max-width: 654px){
+    .dropdown-menu{
+        margin-left: 0rem;
+    }
+
+    .profileDrop{
+        margin-right: -40%;
+
+    }
+    .notification-menu{
+        margin-left: 0rem;
+    }
+    .profile{
+        margin-right: 43%;
+    }
+    .notButton{
+        margin-left: 49%;
+    }
+
+    .start-100{
+        margin-left: -45% !important;
+    }
+
+}
+
+@media (min-width: 316px) and (max-width: 420px){
+
+
+    .dropdown-menu {
+        margin-left: -8%;
+    }
+
+    .profileDrop{
+        margin-right: -60%;
+
+    }
+    .notification-menu{
+        margin-left: 0rem;
+    }
+    .profile{
+        margin-right: 39%;
+    }
+    .notButton{
+        margin-left: 49%;
+    }
+
+    .start-100{
+        margin-left: -43% !important;
+    }
+}
+
+@media (max-width: 316px){
+    .dropdown-menu{
+        margin-left: -10%;
+    }
+
+
+    .profileDrop{
+        margin-right: -45%;
+
+    }
+    .notification-menu{
+        margin-left: 0rem;
+    }
+    .profile{
+        margin-right: 35%;
+    }
+
+    .logo{
+        margin-left: 15%;
+    }
+
+    .navbar-toggler{
+        margin-left: 40%;
+    }
+    .notButton{
+        margin-left: 49%;
+    }
+
+    .start-100{
+        margin-left: -43% !important;
+    }
+
+
+}

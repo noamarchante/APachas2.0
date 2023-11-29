@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.title{
+    padding-top: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    color: #555;
+}
+
+.align-self-center{
+    margin-top: 5px;
+}
+
+.text{
+    width: 100%;
+    color: #333;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.check{
+    margin-top: 35px;
+}
+
+.imageRow{
+    margin-top: 30px;
+    margin-bottom: -30px;
+}
+
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+
+.imageDiv{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.image {
+    width:173px;
+    height:173px;
+    border-radius:90px;
+    background-color: white;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+}
+
+.imageColor{
+    filter:brightness(0.4);
+}
+
+.passwordDiv{
+    margin-top: 50px;
+}
+
+.imageText{
+    border: none;
+    width: 50px;
+    height: 50px;
+    margin-top: 15px;
+    padding-right: 15px;
+    background: url("../../../../../assets/image.svg") top left no-repeat;
+    background-size: 50px 50px;
+}
+
+.imageText2{
+    position: absolute;
+    top: 44%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    z-index: 1;
+}
+.name-row{
+    padding-top: 13px;
+}
+
+.inputs{
+    width: 100%;
+    padding: 10px;
+    background: #f5f5f5;
+    color: #333;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    margin: 8px 0;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.description-row{
+    padding-top: 13px;
+}
+
+.buttons{
+    width: 100%;
+    max-width: 125px;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin: 8px 0;
+    max-width: 125px;
+    background: #66bb6a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.close{
+    background: #555;
+}
+
+
+.daterangerpicker {
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+    margin: 8px 0;
+    letter-spacing: 1px;
+    font-weight: 300;
+    color: #333;
+    padding-left: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-height: 36px;
+    align-items: center;
+}
+
+
+.daterangerpicker .placeholder {
+    color: #777;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    margin: 8px 0;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+@media (max-width: 340px) {
+    .buttons{
+        width: 45%;
+    }
+}
+
+@media (max-width: 769px){
+    .imageText2{
+        position: absolute;
+        top: 48%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        color: #fff;
+        font-size: 14px;
+        letter-spacing: 1px;
+        font-weight: 300;
+        z-index: 1;
+        border: none;
+        width: 60px;
+        height: 60px;
+        padding-right: 15px;
+        /*background: url("../../assets/image.svg") top left no-repeat;*/
+        background-size: 60px 60px;
+    }
+    .imageColor2{
+        filter:brightness(0.6);
+    }
+}

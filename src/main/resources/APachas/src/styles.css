@@ -1,0 +1,220 @@
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar{
+     -webkit-appearance: none;
+}
+
+.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar:vertical{
+     width: 10px;
+}
+
+.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-button:increment, .ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-button{
+     display: none;
+}
+
+.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar:horizontal{
+     height: 10px;
+}
+
+.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-thumb{
+     background: #f5f5f5;
+     border-radius: 20px;
+     border: 2px solid #f5f5f5;
+}
+
+.ng-dropdown-panel-items.scroll-host::-webkit-scrollbar-track{
+     border-radius: 10px;
+}
+
+.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {
+     border-color: #ccc !important;
+     box-shadow: none !important;
+}
+
+.ng-select.ng-select-opened.ng-select-top>.ng-select-container{
+     border-radius: 4px !important;
+}
+
+.ng-select.ng-select-opened>.ng-select-container{
+     border-color: #ccc !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked{
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup {
+     text-align: center !important;
+     background-color: #f5f5f5 !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-marked {
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-disabled {
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected.ng-option-marked {
+     background-color: white !important;
+     font-weight: 500;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected.ng-option-marked {
+     background-color: white !important;
+     font-weight: 600;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected:hover, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected.ng-option-marked:hover {
+     background-color: rgba(102, 187, 106, 0.1) !important;
+     font-weight: 600;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-optgroup.ng-option-selected  {
+     background-color: white !important;
+     font-weight: 500 !important;
+}
+
+.ng-select .ng-select-container {
+     width: 100%;
+     outline: none;
+     box-shadow: none;
+     margin: 8px 0;
+     letter-spacing: 1px;
+     font-weight: 300;
+     color: #333;
+     padding-left: 10px;
+     background-color: #fff;
+     border-radius: 4px;
+     border: 1px solid #ccc;
+     min-height: 36px;
+     align-items: center;
+}
+
+
+
+.daterangepicker td.active.start-date, .daterangepicker td.active.end-date {
+     background-color: #66bb6a !important;
+}
+
+.daterangepicker td.in-range {
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.daterangepicker .applyBtn{
+     background-color: #66bb6a !important;
+     border: none;
+}
+
+.daterangepicker .cancelBtn{
+     color: #fff;
+     background-color: #555;
+     border: none;
+}
+.daterangepicker option:before {
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.daterangepicker select {
+     text-decoration: none !important;
+     border: 1px solid #cccccc !important;
+     box-shadow: none !important;
+     font-size: 14px !important;
+     letter-spacing: 1px !important;
+     font-weight: 300 !important;
+     color: #333 !important;
+     outline: none !important;
+     background-color: white !important;
+}
+
+.daterangepicker select option{
+     text-decoration: none !important;
+     border: 1px solid #cccccc !important;
+     box-shadow: none !important;
+     font-size: 14px !important;
+     letter-spacing: 1px !important;
+     font-weight: 300 !important;
+     color: #333 !important;
+     outline: none !important;
+     background-color: white !important;
+}
+
+.daterangepicker select option:hover
+
+{
+     background-color: rgba(102, 187, 106, 0.1) !important;
+
+}
+
+.daterangepicker td:hover{
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.cal-month-view .cal-header .cal-cell {
+     text-transform: uppercase;
+     color: #555;
+}
+
+.cal-month-view .cal-day-number {
+     text-decoration: none;
+     border: 1px solid #ffffff;
+     box-shadow: none;
+     font-size: 18px;
+     letter-spacing: 1px;
+     font-weight: 300;
+     color: #333;
+     outline: none;
+}
+
+.cal-month-view .cal-day-badge{
+     background-color: #66bb6a !important;
+}
+
+.cal-month-view .cal-open-day-events{
+     background-color: #f5f5f5 !important;
+     box-shadow: none !important;
+}
+
+.cal-month-view .cal-open-day-events{
+     text-decoration: none;
+     border: 1px solid #ffffff;
+     box-shadow: none;
+     font-size: 14px;
+     letter-spacing: 1px;
+     text-align: left;
+     text-transform: uppercase;
+     font-weight: 300;
+     color: #333 !important;
+     outline: none;
+}
+
+.cal-month-view .cal-day-cell.cal-today{
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.cal-month-view .cal-cell-row .cal-cell:hover, .cal-month-view .cal-cell.cal-has-events.cal-open{
+     background-color: rgba(102, 187, 106, 0.1) !important;
+}
+
+.btn:focus{
+     box-shadow: none;
+}
+
+.btn-close:focus{
+     box-shadow: none;
+}
+
+.form-check-input:checked{
+     background-color: #66bb6a;
+     border-color: #66bb6a;
+}
+
+.form-check-input:focus{
+     box-shadow: none !important;
+     border-color: #cccccc;
+}
+
+.table-hover > tbody > tr:hover {
+     --bs-table-accent-bg: rgba(102, 187, 106, 0.1);
+}

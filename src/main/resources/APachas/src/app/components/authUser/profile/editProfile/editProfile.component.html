@@ -1,0 +1,196 @@
+<div class="modal fade" id="editProfileModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="editProfileLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title">{{title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (submit)="onEdit();" ngNativeValidate #editProfileForm="ngForm">
+                    <div class="col container-fluid">
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                <div class="row imageRow">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 file-input imageDiv">
+                                        <input (change)="getImage($event)" accept="image/png,image/jpeg" class="file"
+                                               type="file"
+                                               id="editProfile_userPhoto" name="userPhoto">
+                                        <label title="Cambiar imagen de usuario" for="editProfile_userPhoto"
+                                               (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)">
+                                            <ng-container *ngIf="authUser.photo; else imagesDiv">
+                                                <img class="image imageColor2" [ngClass]="imageColor" [src]="authUser.photo" alt=""
+                                                     id="editProfile_photo">
+                                            </ng-container>
+                                            <ng-template #imagesDiv>
+                                                <img class="image imageColor2" [ngClass]="imageColor" [src]="defaultImage">
+                                            </ng-template>
+                                            <p class="imageText2" [ngClass]="imageText"></p>
+                                        </label>
+                                        <div *ngIf="imageFormat == false"
+                                             class="alert alert-danger">
+                                            <div *ngIf="imageFormat == false">Sólo JPG o PNG
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row secondDiv">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 passwordDiv">
+                                        <div>
+                                            <input type="password" class="inputs" id="editProfile_password" autocomplete="current-password" name="current-password" placeholder="Contraseña Actual"
+                                                   [(ngModel)]="password" #passwordForm="ngModel" minlength="6">
+                                            <div *ngIf="password != authUser.password && password !=''" class="alert alert-danger">
+                                                <div>La contraseña no es correcta</div>
+                                            </div>
+                                            <div *ngIf="editProfileForm.submitted && passwordForm.invalid" class="alert alert-danger">
+                                                <div *ngIf="passwordForm.errors.required">La contraseña es un campo obligatorio</div>
+                                                <div *ngIf="passwordForm.errors.minLenght">La contraseña no debe tener menos de 6
+                                                    caracteres
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row secondDiv">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div>
+                                            <input type="password" class="inputs" id="editProfile_newPassword" autocomplete="new-password" name="new-password" placeholder="Nueva contraseña"
+                                                   [(ngModel)]="newPassword" #passwordForm="ngModel" minlength="6">
+                                            <div *ngIf="editProfileForm.submitted && passwordForm.invalid" class="alert alert-danger">
+                                                <div *ngIf="passwordForm.errors.required">La contraseña es un campo obligatorio</div>
+                                                <div *ngIf="passwordForm.errors.minLenght">La contraseña no debe tener menos de 6
+                                                    caracteres
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row secondDiv">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <input type="password" class="inputs" id="editProfile_userPasswordConfirm" autocomplete="new-password" name="new-password"
+                                               placeholder="Confirmación contraseña" [(ngModel)]="passwordConfirm"
+                                               #userPasswordConfirmForm="ngModel" minlength="6">
+                                        <div *ngIf="newPassword != passwordConfirm" class="alert alert-danger">
+                                            <div>La contraseña de confirmación no coincide</div>
+                                        </div>
+                                        <div *ngIf="editProfileForm.submitted && userPasswordConfirmForm.invalid" class="alert alert-danger">
+                                            <div *ngIf="userPasswordConfirmForm.errors.required">La contraseña es un campo obligatorio
+                                            </div>
+                                            <div *ngIf="userPasswordConfirmForm.errors.minLenght">La contraseña no debe tener menos de 6
+                                                caracteres
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                <div class="row name-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <input type="text" id="editProfile_userName" name="userName"
+                                               class="inputs" placeholder="Nombre*" minlength="1" maxlength="40"
+                                               pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ1-9,.'-]+)*"
+                                               title="Puede contener letras, máximo 40 caracteres. Campo obligatorio"
+                                               [(ngModel)]="authUser.name" required
+                                               #userNameForm="ngModel">
+                                        <div *ngIf="editProfileForm.onSubmit(undefined) && userNameForm.invalid  || userNameForm.invalid && userNameForm.value != null"
+                                             class="alert alert-danger">
+                                            <div *ngIf="userNameForm.errors.required">Campo obligatorio
+                                            </div>
+                                            <div *ngIf="userNameForm.errors.pattern">Máximo 40 caracteres
+                                                alfanuméricos
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <input type="text" id="editProfile_userSurname" name="userSurname"
+                                               class="inputs" placeholder="Apellidos*" minlength="1" maxlength="40"
+                                               pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+)*"
+                                               title="Puede contener letras, máximo 40 caracteres. Campo obligatorio"
+                                               [(ngModel)]="authUser.surname" required
+                                               #userSurnameForm="ngModel">
+                                        <div *ngIf="editProfileForm.onSubmit(undefined) && userSurnameForm.invalid  || userSurnameForm.invalid && userSurnameForm.value != null"
+                                             class="alert alert-danger">
+                                            <div *ngIf="userSurnameForm.errors.required">Campo obligatorio
+                                            </div>
+                                            <div *ngIf="userSurnameForm.errors.pattern">Máximo 40 caracteres
+                                                alfanuméricos
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <input type="text" id="editProfile_login" name="login"
+                                               class="inputs" placeholder="Login*" minlength="1" maxlength="40"
+                                               pattern="^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]([ ]?[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+)*"
+                                               title="Puede contener letras, máximo 40 caracteres. Campo obligatorio"
+                                               [(ngModel)]="login" required
+                                               #loginForm="ngModel" autocomplete="username">
+                                        <div *ngIf="!available" class="alert alert-danger">
+                                            <div>Login no disponible</div>
+                                        </div>
+                                        <div *ngIf="editProfileForm.onSubmit(undefined) && loginForm.invalid  || loginForm.invalid && loginForm.value != null"
+                                             class="alert alert-danger">
+                                            <div *ngIf="loginForm.errors.required">Campo obligatorio
+                                            </div>
+                                            <div *ngIf="loginForm.errors.pattern">Máximo 40 caracteres
+                                                alfanuméricos
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="daterangerpicker"
+                                             daterangepicker
+                                             [options]="options"
+                                             (selected)="selectedDate($event)"
+                                             (applyDaterangepicker)="applyDate()"
+                                             (cancelDaterangepicker)="cancelDate()">
+                                            <div class="d-flex justify-content-between h-100">
+                                            <span *ngIf="birthday != undefined" class="ps-2 align-self-center">
+                                                            {{birthday | date:'dd/MM/YYYY'}}
+                                            </span>
+                                                <span *ngIf="birthday == undefined" class="placeholder align-self-center">
+                                                            Fecha*
+                                            </span>
+                                                <div class="align-self-center">
+                                                    <span *ngIf="birthday != undefined" class="cancel" (click)="cancelDate()">×</span>
+                                                    <span class="ng-arrow-wrapper">
+                                                     <span class="btn ng-arrow"><i class="bi bi-calendar"></i></span>
+                                                </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row description-row">
+                                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-check form-switch">
+                                            <input name="notify" class="form-check-input check" type="checkbox" id="flexSwitchCheckDefault" [checked]="authUser.notify" (click)="setNotify()">
+                                            <label class="form-check-label text check" for="flexSwitchCheckDefault">Notificaciones email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="buttons">
+                                <button type="button" id="closeButton" class="button close" data-bs-dismiss="modal" (click)="closeModal()">
+                                    Cerrar
+                                </button>
+                            </div>
+                            <div class="buttons">
+                                <input type="submit" class="button" value="Guardar">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications></simple-notifications>

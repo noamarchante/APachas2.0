@@ -1,0 +1,691 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+{
+    border-collapse: collapse;
+    border-spacing: 10px 5px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.searchDiv
+{
+    padding-top: 50px;
+    padding-bottom: 30px;
+    background: #fff;
+}
+
+.form-check{
+    margin-top: -40px;
+    padding-bottom: 20px;
+}
+
+.message
+{
+    cursor:pointer;
+    text-decoration: none;
+    color: #66bb6a;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-right: 20px;
+}
+
+.arrow{
+    height: 30px;
+    width: 80px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.messageCost
+{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: default;
+    text-decoration: none;
+    text-align: center;
+    color: #333333;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.colorDebtSender{
+    color: #d92e2e;
+}
+
+.colorDebtReceiver{
+    color: #66bb6a;
+}
+
+.colorButtonDebt{
+    background: #d92e2e!important;
+}
+
+.card-text{
+    padding-top: 5px;
+    text-align: right;
+}
+
+.transactionCard-text{
+    text-align: center;
+}
+
+.transactionDivAligment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.searchDiv input {
+    width: 150%;
+    padding: 10px;
+    color: #333;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    background: url("../../../assets/search.svg")  top left no-repeat #f5f5f5;
+    background-size: 1rem;
+    background-position-y: 13px;
+    background-position-x: 5px;
+    padding-left:30px;
+}
+
+.form-check-input:checked{
+    background-color: #66bb6a;
+}
+
+.form-switch .form-check-input:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e");
+
+}
+
+.form-switch[_ngcontent-ylm-c80]   .form-check-input[_ngcontent-ylm-c80]:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-check-input:active {
+    filter: none;
+}
+
+.form-check-label{
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    color: #333;
+    outline: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    background-image: url("../../../assets/closeSearch.svg");
+    background-size: 0.8rem 0.8rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    cursor:pointer;
+}
+
+.createDiv{
+    text-align: left !important;
+}
+
+.button{
+    cursor:pointer;
+    border: none;
+    width: 20px;
+    height: 20px;
+    background: url("../../../assets/add.svg") top left no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+}
+
+.transactionButton {
+    padding: 10px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    margin: 8px 0;
+    max-width: 180px;
+    background: #66bb6a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    text-transform: uppercase;
+}
+
+.addButton
+{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    max-width: 180px;
+    background: #66bb6a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    text-transform: uppercase;
+}
+
+.divAligment{
+    text-align: center !important;
+}
+
+.col{
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.card{
+    border: none;
+}
+
+.color:hover{
+    background: rgba(102, 187, 106, 0.12);
+    cursor:pointer;
+}
+
+.image {
+    width:173px;
+    height:173px;
+    border-radius:90px;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-top: 25%;
+}
+
+.transactionTitle{
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.imageTransaction{
+    width:150px;
+    height:150px;
+    border-radius:90px;
+    background-color: white;
+}
+
+ul li {
+    display: inline;
+}
+
+ul li a {
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    background: #f5f5f5;
+    color: #333;
+    outline: none;
+}
+
+ul li:first-child a
+{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor:pointer;
+
+}
+
+ul li:last-child a
+{
+
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor:pointer;
+}
+
+.title{
+    padding-top: 60px;
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    width: 100%;
+    color: #555;
+}
+
+.eventTitle{
+    font-size: 30px;
+    padding-left: 80px;
+}
+
+.statusDiv{
+    padding-top: 5px;
+    padding-right: 10px;
+    width: 25%;
+}
+
+.row{
+    align-content: center;
+    padding-bottom: 10px;
+}
+
+.col{
+    text-align: center;
+}
+
+.imageEventDiv{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
+
+.imageEvent {
+    width:173px;
+    height:173px;
+    border-radius:90px;
+    background-color: white;
+}
+
+.description-row{
+    padding-top: 10px;
+    text-align: left !important;
+}
+
+.description{
+    padding-left: 20px;
+    text-align: left !important;
+    margin-top: -40px;
+    padding-bottom: 60px;
+}
+
+.section{
+    padding-top: 30px;
+}
+
+.search{
+    margin-left: 20px;
+}
+
+.searchTransaction{
+    margin-left: -40px;
+    margin-bottom: 20px;
+}
+
+.text{
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    color: #333;
+    outline: none;
+}
+
+div.paginationPartakerDiv {
+    padding-top: 10px;
+    height: 290px;
+    overflow: scroll;
+    border-left-style: solid;
+    border-color:  #f5f5f5;
+    margin-left: -30px;
+}
+
+.partakerDiv{
+    padding-left: 40px;
+}
+
+.paginationPartakerDiv::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+
+.paginationPartakerDiv::-webkit-scrollbar:vertical{
+    width: 10px;
+}
+
+.paginationPartakerDiv::-webkit-scrollbar-button:increment, .paginationPartakerDiv::-webkit-scrollbar-button{
+    display: none;
+}
+
+.paginationPartakerDiv::-webkit-scrollbar:horizontal{
+    height: 10px;
+}
+
+.paginationPartakerDiv::-webkit-scrollbar-thumb{
+    background: #f1f1f1;
+    border-radius: 20px;
+    border: 2px solid #f1f1f1;
+}
+
+.paginationPartakerDiv::-webkit-scrollbar-track{
+    border-radius: 10px;
+}
+
+.paginationPartaker{
+    align-items: center;
+}
+
+.previousPartaker{
+    float: left;
+}
+
+.imagePartaker {
+    width:100px;
+    height:100px;
+    border-radius:90px;
+    background-color: white;
+}
+
+.imageP{
+    width: 100%;
+}
+
+.partaker{
+    margin-top: -8px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #333;
+    width:100%;
+    text-align: center;
+    margin-left: -15px;
+}
+
+.owner{
+    border-style: solid;
+    border-color: rgba(102, 187, 106, 0.53);
+}
+
+.icon{
+    width: 35px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.date{
+    width: 100%;
+    padding-top: 10px;
+}
+
+.subtitle{
+    padding-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    color: #555;
+}
+
+.modal-body{
+    margin-bottom: -25px;
+}
+
+.editDiv{
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.deleteDiv{
+    padding-top: 5px;
+}
+.editButton{
+    cursor:pointer;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: url("../../../assets/edit.svg") top left no-repeat;
+    background-size: 40px 40px;
+}
+
+.more a{
+    position: relative;
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    color: #66bb6a;
+    cursor:pointer;
+    vertical-align: center;
+}
+.more{
+    display:flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: 20px;
+
+}
+
+.deleteButton{
+    cursor:pointer;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: url("../../../assets/delete.svg") top left no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
+}
+
+.closeButton{
+    margin-top: -50px;
+}
+
+ul.pagination{
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    width: 100%;
+}
+
+ul.pagination li {
+    display: inline;
+    border: none;
+}
+
+ul.pagination li a {
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 300;
+    background: #f5f5f5;
+    color: #333;
+    outline: none;
+}
+
+ul.pagination li:first-child a
+{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor:pointer;
+
+}
+
+ul.pagination li:last-child a
+{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor:pointer;
+}
+
+.previous{
+    float: left;
+}
+
+.next{
+    float: right;
+}
+
+@media (max-width: 349px) {
+
+    ul.paginationEvent li {
+        padding-bottom: 20px;
+    }
+    .previousEvent{
+        float: none;
+        margin-left: -40px;
+    }
+
+    .nextEvent{
+        float: none;
+    }
+
+    div.paginationPartakerDiv {
+        height: 145px;
+        border-left-style: none;
+    }
+
+    .editDiv{
+        padding-left: 15px;
+    }
+}
+/*XXL*/
+@media (min-width: 1400px) {
+    .card-text{
+        padding-right: 20px;
+    }
+    .searchDiv input {
+        width: 42%;
+    }
+    .searchDiv{
+        text-align: right;
+    }
+}
+
+/*XL*/
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .title{
+        padding-top: 20px;
+    }
+    .card-text{
+        text-align: center;
+        padding-left: 0px;
+    }
+    .searchDiv input {
+        width: 45%;
+    }
+    .searchDiv{
+        text-align: right;
+    }
+}
+
+/*L*/
+@media (min-width: 993px) and (max-width: 1200px) {
+   .transactionTitle{
+       margin-right: -5%;
+   }
+.searchTransaction{
+    margin-left: 25%;
+}
+
+}
+
+/*M*/
+@media (min-width: 768px) and (max-width: 992px) {
+    .title{
+        padding-top: 20px;
+    }
+    .searchTransaction{
+        margin-left: 20%;
+    }
+
+}
+
+/*S*/
+@media (min-width: 576px) and (max-width: 768px) {
+    .card-text{
+        padding-right: 45px;
+    }
+    .searchTransaction{
+        margin-left: 15%;
+    }
+    .createDiv{
+        text-align: center!important;
+    }
+}
+
+/*XS*/
+@media (max-width: 576px) {
+    .title{
+        padding-top: 20px;
+    }
+    .searchTransaction{
+        margin-left: 15%;
+    }
+    .card-text{
+        text-align: center;
+        padding-left: 0px;
+    }
+
+    .createDiv{
+        padding-top: 10px;
+        text-align: center!important;
+    }
+}
+
+@media (min-width: 280px) and (max-width: 497px){
+    .imageTransaction{
+        width: 100px;
+        height: 100px;
+    }
+
+    .messageCost{
+        font-size: 10px;
+    }
+
+    .colorButtonDebt{
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .transactionTitle{
+        font-size: 10px;
+    }
+
+
+
+
+}

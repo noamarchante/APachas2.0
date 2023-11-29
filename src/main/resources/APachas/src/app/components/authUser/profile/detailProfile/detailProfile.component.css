@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+*
+{
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section{
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-bottom: 80px;
+}
+
+.calendarDiv{
+    margin-top: 50px;
+}
+
+.title{
+    padding-top: -20%;
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 50%;
+    color: #555;
+}
+
+.btn-primary{
+    background-color: #f5f5f5;
+    color: #333333;
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-align: left;
+    font-weight: 300;
+    color: #333;
+    padding: 10px;
+    outline: none;
+}
+
+.icon{
+    width: 25px;
+    height: 20px;
+    padding-right: 5px;
+}
+
+.text{
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-align: left;
+    font-weight: 300;
+    color: #333;
+    padding: 10px;
+    outline: none;
+}
+
+.todayDate{
+    text-decoration: none;
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #333;
+    padding: 10px;
+    outline: none;
+}
+
+.imageCol{
+    text-align: left;
+}
+
+.subtitle{
+    padding-top: 60px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    width: 55%;
+    color: #555;
+}
+.button
+{
+    margin-top: 10%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    max-width: 180px;
+    background: #66bb6a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    text-transform: uppercase;
+    margin-left: 35%;
+}
+
+.titleclass{
+    margin-left: -5%;
+}
+
+.imageDiv{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    padding-top: 50px;
+    background: #fff;
+}
+
+.image {
+    width:346px;
+    height:346px;
+    border-radius:180px;
+    background-color: white;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+}
+@media (min-width: 768px){
+    .title{
+        margin-top: 15%;
+    }
+    .button{
+        margin-left: 40%;
+    }
+}
+
+@media (max-width: 380px){
+    .image {
+        width:280px;
+        height:280px;
+    }
+    .imageDiv{
+        margin-left: 5%;
+    }
+}
+@media (min-width: 400px) and (max-width: 768px){
+    .button{
+        margin-left: 40%;
+    }
+}
+@media (min-width: 340px) and (max-width: 400px){
+    .button{
+        margin-left: 37%;
+    }
+}
+@media (min-width: 768px) and (max-width: 1200px){
+    .calendarDiv{
+        margin-left: 1%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px){
+    .calendarDiv{
+        margin-left: 8%;
+    }
+}
+
+@media (min-width: 341px) and (max-width: 576px){
+    .calendarDiv{
+        margin-left: 12%;
+    }
+}
+
+@media (max-width: 340px){
+    .calendarDiv{
+        margin-left: 15%;
+    }
+}

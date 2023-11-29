@@ -1,0 +1,28 @@
+<div class="modal fade" id="messageConfirmModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+     aria-labelledby="messageConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title title">{{_message}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col container-fluid">
+                    <div class="row">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 buttons">
+                            <button type="button" id="cancelButton" data-bs-dismiss="modal" class="button close" (click)="onConfirm(false);">
+                                    Denegar
+                            </button>
+                        </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 buttons">
+                            <button type="button" id="acceptButton"  data-bs-dismiss="modal" class="button" (click)="onConfirm(true);">
+                                    Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<simple-notifications></simple-notifications>

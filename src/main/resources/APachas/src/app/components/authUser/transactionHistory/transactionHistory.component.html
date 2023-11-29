@@ -1,0 +1,139 @@
+<section>
+    <h6 class="title modal-title">HISTORIAL DE TRANSACCIONES</h6>
+    <div class="searchDiv row">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 searchTransaction">
+            <form ngNativeValidate (input)="searchTransactionInput()" #searchTransactionsForm="ngForm">
+                <input type="search" id="events_transaction" name="transaction" placeholder="Buscar por nombre de usuario o evento"
+                       [(ngModel)]="searchTransactionValue" required #searchTransactionValueForm="ngModel" aria-label="Search">
+            </form>
+        </div>
+        <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 dropd">
+            <div class="dropdown dropAlign">
+                <a class="btn btn-neutral dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert iSize"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <p class="filterSearch" [ngClass]="checkFilter(0)" (click)="toggleCheck(0)">Ordenar por nombre de evento</p>
+                    </li>
+                    <li>
+                        <p class="filterSearch" [ngClass]="checkFilter(1)" (click)="toggleCheck(1)">Mostrar deudas</p>
+                    </li>
+                    <li>
+                        <p class="filterSearch" [ngClass]="checkFilter(2)" (click)="toggleCheck(2)">Mostrar pagos</p>
+                    </li>
+                    <li>
+                        <p class="filterSearch" [ngClass]="checkFilter(3)" (click)="toggleCheck(3)">Mostrar transacciones pendientes</p>
+                    </li>
+                    <li>
+                        <p class="filterSearch" [ngClass]="checkFilter(4)" (click)="toggleCheck(4)">Ordenar por más reciente</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngIf="checked[0]" class="col-2">
+            <p class="tag">{{checkedFilter(0)}}</p>
+        </div>
+        <div *ngIf="checked[1]" class="col-2">
+            <p class="tag">{{checkedFilter(1)}}</p>
+        </div>
+        <div *ngIf="checked[2]" class="col-2">
+            <p class="tag">{{checkedFilter(2)}}</p>
+        </div>
+        <div *ngIf="checked[3]" class="col-2">
+            <p class="tag">{{checkedFilter(3)}}</p>
+        </div>
+        <div *ngIf="checked[4]" class="col-3">
+            <p class="tag">{{checkedFilter(4)}}</p>
+        </div>
+
+    </div>
+    <app-messageConfirm (eventMessageConfirm)="onRequest($event)" [message]=message></app-messageConfirm>
+    <div class="row row-cols-1 row-cols-xxl-2 row-cols-xl-2 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 g-3 divAligment">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="transactionTitle">Evento</th>
+                    <th scope="col" class="transactionTitle">Emisor</th>
+                    <th scope="col" class="transactionTitle">Receptor</th>
+                    <th scope="col" class="transactionTitle">Costo</th>
+                    <th scope="col" class="transactionTitle">Estado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let transaction of transactions;let i=index">
+                    <td>
+                        <ng-container *ngIf="getEventTransaction(transaction.eventId).eventPhoto != null; else eventImagesDiv">
+                            <p class="imageP">
+                                <img class="imageTransaction"
+                                     [src]="imagesEvents[transaction.eventId]" alt="" id="detailEvent_photo">
+                            </p>
+                        </ng-container>
+                        <ng-template #eventImagesDiv>
+                            <p class="imageP">
+                                <img class="imageTransaction" [src]="defaultEventImage">
+                            </p>
+                        </ng-template>
+                        <div class="card-body-xxl-7 card-body-xl-12 card-body-lg-7 card-body-md-12 card-body-sm-7 divAligment">
+                            <h5 class="text">{{getEventTransaction(transaction.eventId).eventName}}</h5>
+                        </div>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="getActor(transaction.senderId).userPhoto != null; else senderImagesDiv">
+                            <p class="imageP">
+                                <img class="imageTransaction"
+                                 [src]="imagesPartakers[transaction.senderId]" alt="" id="detailSender_photo">
+                            </p>
+                        </ng-container>
+                        <ng-template #senderImagesDiv>
+                            <p class="imageP">
+                                <img class="imageTransaction" [src]="defaultUserImage">
+                            </p>
+                        </ng-template>
+                        <div class="card-body-xxl-7 card-body-xl-12 card-body-lg-7 card-body-md-12 card-body-sm-7 divAligment">
+                            <h5 class="text">{{getActor(transaction.senderId).userLogin}}</h5>
+                        </div>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="getActor(transaction.receiverId).userPhoto != null; else receiverImagesDiv">
+                        <p class="imageP">
+                            <img class="imageTransaction"
+                                 [src]="imagesPartakers[transaction.receiverId]" alt="" id="detailReceiver_photo">
+                        </p>
+                        </ng-container>
+                        <ng-template #receiverImagesDiv>
+                            <p class="imageP">
+                                <img class="imageTransaction" [src]="defaultUserImage">
+                            </p>
+                        </ng-template>
+                        <div class="card-body-xxl-7 card-body-xl-12 card-body-lg-7 card-body-md-12 card-body-sm-7 divAligment">
+                            <h5 class="text">{{getActor(transaction.receiverId).userLogin}}</h5>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="text cost info" [ngClass]="costColor(transaction)">{{cost(transaction.cost)}}€</p>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="getStatus(transaction) != 'Pagar' && getStatus(transaction) != 'Confirmar'; else statusDiv">
+                            <p class="text status">{{getStatus(transaction)}}</p>
+                        </ng-container>
+                        <ng-template #statusDiv>
+                            <button class="text status button" type="button" data-bs-toggle="modal" data-bs-target="#messageConfirmModal" (click)="messageValue(transaction)">{{getStatus(transaction)}}</button>
+                        </ng-template>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="paginationDiv">
+        <ul class="row pagination">
+            <li class="page-item" [ngClass]="previous" *ngIf="transactionPage!=0"><a class="page-link previous" (click)="setTransactionPage(-1)">Anterior</a>
+            </li>
+            <li class="page-item" [ngClass]="next" *ngIf="transactionPage+1<totalTransactionPage"><a class="page-link next" (click)="setTransactionPage(1)">Siguiente</a>
+            </li>
+        </ul>
+    </div>
+</section>
+

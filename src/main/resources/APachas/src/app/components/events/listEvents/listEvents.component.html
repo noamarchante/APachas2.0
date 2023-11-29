@@ -1,0 +1,72 @@
+<section>
+    <div class="searchDiv row">
+        <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-8 col-sm-9 col-10">
+            <form ngNativeValidate (input)="searchInput()" #searchEventsForm="ngForm">
+                <input type="search" id="events_eventName" name="eventName" placeholder="Buscar por nombre de evento"
+                           [(ngModel)]="eventName" required #eventNameForm="ngModel" aria-label="Search">
+            </form>
+        </div>
+        <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 dropd">
+            <div class="dropdown dropAlign">
+                <a class="btn btn-neutral dropdown-toggle" aria-label="filtros" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert iSize"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <p class="filterSearch" [ngClass]="checkFilter()" (click)="toggleCheck()">Eventos finalizados</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xxl-1 col-xl-1 col-lg-2 col-md-2 col-sm-2 col-5 createFirstDiv">
+            <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#createEventModal" (click)="setEvent();">Añadir</button>
+        </div>
+    </div>
+    <div *ngIf="checked" class="row">
+        <p class="tag">Finalizados</p>
+    </div>
+
+    <app-createEvent (eventSave)="getEvents();" [event]="selectedEvent"></app-createEvent>
+    <app-detailEvent (eventDelete)="getEvents();" (eventDetail)="setSelectedEvent($event)" (eventMessage)="getEvents()" [event]="selectedEvent" [previous] = "getPrevious()" [next] = "getNext()" [status] ="selectedStatus"></app-detailEvent>
+
+    <div class="row row-cols-1 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 g-4 divAligment">
+        <ng-container *ngIf="events.length != 0; else eventsDiv">
+            <div *ngFor="let event of events;let i=index">
+                <div class="col">
+                    <div class="card mb-3 color" id="detailEventCard" data-bs-toggle="modal" data-bs-target="#detailEventModal"
+                         (click)="selectEvent(i)">
+                        <div class="row g-0">
+                            <div class="col-xxl-5 col-xl-12 col-lg-5 col-md-12 col-sm-5 divAligment">
+                                <ng-container *ngIf="event.eventPhoto != null; else imagesDiv">
+                                    <img class="image" alt="imagen de evento" [src]="images[event.eventId]">
+                                </ng-container>
+                                <ng-template #imagesDiv>
+                                    <img class="image" alt="imagen de evento por defecto" [src]="defaultImage">
+                                </ng-template>
+                            </div>
+                            <div class="col-xxl-7 col-xl-12 col-lg-7 col-md-12 col-sm-7 divAligment">
+                                <div class="card-body-xxl-7 card-body-xl-12 card-body-lg-7 card-body-md-12 card-body-sm-7 divAligment">
+                                    <h5 class="title">{{event.eventName}}</h5>
+                                    <p class="card-text">
+                                        <a class="message" aria-label="estado">{{status[event.eventId]}}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #eventsDiv>
+            <p class="text">NO EXISTEN EVENTOS</p>
+        </ng-template>
+    </div>
+    <div class="paginationDiv">
+        <ul class="row pagination">
+            <li class="page-item" [ngClass]="previous" *ngIf="page!=0"><a aria-label="anterior" class="page-link previous" (click)="setPage(-1)">Anterior</a>
+            </li>
+            <li class="page-item" [ngClass]="next" *ngIf="page+1<totalPage"><a aria-label="siguiente" class="page-link next" (click)="setPage(1)">Siguiente</a>
+            </li>
+        </ul>
+    </div>
+</section>

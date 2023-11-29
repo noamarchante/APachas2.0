@@ -1,0 +1,88 @@
+<section>
+    <div class="container">
+        <div class="user signupBx">
+            <div class="formBx">
+                <form (submit)="onCreate()" ngNativeValidate #loginForm="ngForm">
+                    <h2>Crear una cuenta en <a href="home">¡A pachas!</a></h2>
+                    <div>
+                        <input type="text" id="register_userName" name="userName" placeholder="Nombre*"
+                               pattern="[a-zA-ZñÑ]{1,100}" title="Must be an alpha"
+                               [(ngModel)]="name" required #usernameForm="ngModel">
+                        <div *ngIf="!available" class="alert alert-danger">
+                            <div>Login no disponible</div>
+                        </div>
+                        <div *ngIf="loginForm.submitted && usernameForm.invalid" class="alert alert-danger">
+                            <div *ngIf="usernameForm.errors.required">El nombre es un campo obligatorio</div>
+                            <div *ngIf="usernameForm.errors.pattern">El nombre solo puede contener letras y debe estar
+                                comprendido entre 1 y 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" id="register_userSurname" name="userSurname" placeholder="Apellidos*"
+                               [(ngModel)]="surname" pattern="[a-zA-Zñáéíóú ]{1,100}" title="Must be an alpha" required
+                               #userSurnameForm="ngModel" minlength="6">
+                        <div *ngIf="loginForm.submitted && userSurnameForm.invalid" class="alert alert-danger">
+                            <div *ngIf="userSurnameForm.errors.required">El apellido es un campo obligatorio</div>
+                            <div *ngIf="userSurnameForm.errors.pattern">El apellido solo puede contener letras, espacios
+                                y debe estar comprendido entre 1 y 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" id="register_userLogin" name="userLogin" placeholder="Nombre de usuario*"
+                               [(ngModel)]="login" required #userLoginForm="ngModel" minlength="6" maxlength="13"
+                               pattern="[a-zA-ZñÑ0-9_-]{1,100}" title="Must be an alphanumeric">
+                        <div *ngIf="loginForm.submitted && userLoginForm.invalid" class="alert alert-danger">
+                            <div *ngIf="userLoginForm.errors.required">El nombre de usuario es un campo obligatorio
+                            </div>
+                            <div *ngIf="userLoginForm.errors.pattern">El nombre de usuario solo puede contener letras,
+                                número, _ y debe estar comprendido entre 1 y 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="password" id="register_userPassword" name="userPassword" placeholder="Contraseña*"
+                               [(ngModel)]="password" required #userPasswordForm="ngModel" minlength="6">
+                        <div *ngIf="loginForm.submitted && userPasswordForm.invalid" class="alert alert-danger">
+                            <div *ngIf="userPasswordForm.errors.required">La contraseña es un campo obligatorio</div>
+                            <div *ngIf="userPasswordForm.errors.minLenght">La contraseña no debe tener menos de 6
+                                caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="password" id="register_userPasswordConfirm" name="userPasswordConfirm"
+                               placeholder="Confirmación contraseña*" [(ngModel)]="passwordConfirm" required
+                               #userPasswordConfirmForm="ngModel" minlength="6">
+                        <div *ngIf="password != passwordConfirm" class="alert alert-danger">
+                            <div>La contraseña de confirmación no coincide</div>
+                        </div>
+                        <div *ngIf="loginForm.submitted && userPasswordConfirmForm.invalid" class="alert alert-danger">
+                            <div *ngIf="userPasswordConfirmForm.errors.required">La contraseña es un campo obligatorio
+                            </div>
+                            <div *ngIf="userPasswordConfirmForm.errors.minLenght">La contraseña no debe tener menos de 6
+                                caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="email" id="register_userEmail" name="userEmail" placeholder="Correo electrónico*"
+                               [(ngModel)]="email" required #userEmailForm="ngModel" minlength="6">
+                        <div *ngIf="loginForm.submitted && userEmailForm.invalid" class="alert alert-danger">
+                            <div *ngIf="userEmailForm.errors.required">El correo electrónico es un campo obligatorio
+                            </div>
+                            <div *ngIf="userEmailForm.errors.pattern">El correo electrónico solo puede contener letras,
+                                @, . y debe estar comprendido entre 1 y 100 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" value="Registrar">
+                    <p class="signin">¿tienes una cuenta? <a href="login"> Inicia sesión</a></p>
+                </form>
+            </div>
+            <div class="imgBx"><img src="../../../../assets/RegisterMoney.jpg" alt="Imagen de tarjetas decorativa registro"></div>
+        </div>
+    </div>
+</section>
+<simple-notifications></simple-notifications>

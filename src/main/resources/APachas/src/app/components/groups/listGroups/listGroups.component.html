@@ -1,0 +1,51 @@
+<div class="searchDiv row">
+    <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-8 col-sm-9 col-10">
+        <form ngNativeValidate (input)="searchInput()" #searchGroupsForm="ngForm">
+            <input type="search" id="groups_groupName" name="groupName" placeholder="Buscar por nombre de grupo"
+                   [(ngModel)]="groupName" required #userGroupNameForm="ngModel" aria-label="Search">
+        </form>
+    </div>
+    <div class="col-xxl-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12 createDiv">
+        <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#createGroupModal" (click)="setGroup();">Añadir</button>
+    </div>
+</div>
+<app-createGroup (eventSave)="getGroups();" [userGroup]="this.selectedUserGroup"></app-createGroup>
+<app-detailGroup (eventDelete)="getGroups();" (eventDetail)="setSelectedUserGroup($event)" [userGroup]="selectedUserGroup" [previous] = "getPrevious()" [next] = "getNext()"></app-detailGroup>
+<div class="row row-cols-1 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 g-4 divAligment">
+    <ng-container *ngIf="groups.length !=0; else groupsDiv">
+        <div *ngFor="let group of groups;let i=index">
+            <div class="col">
+                <div class="card mb-3 color" id="detailGroupCard" data-bs-toggle="modal" data-bs-target="#detailGroupModal"
+                     (click)="selectUserGroup(i)">
+                    <div class="row g-0">
+                        <div class="col-xxl-5 col-xl-12 col-lg-5 col-md-12 col-sm-5 divAligment">
+                            <ng-container *ngIf="group.groupPhoto != null; else imagesDiv">
+                                <img class="image" [src]="images[group.groupId]" alt="imagen de grupo">
+                            </ng-container>
+                            <ng-template #imagesDiv>
+                                <img class="image" [src]="defaultImage" alt="imagen de grupo por defecto">
+                            </ng-template>
+                        </div>
+                        <div class="col-xxl-7 col-xl-12 col-lg-7 col-md-12 col-sm-7 divAligment">
+                            <div class="card-body-xxl-7 card-body-xl-12 card-body-lg-7 card-body-md-12 card-body-sm-7 divAligment">
+                                <h5 class="title">{{group.groupName}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #groupsDiv>
+        <p class="text">No existen grupos</p>
+    </ng-template>
+
+</div>
+<div class="paginationDiv">
+    <ul class="row pagination">
+        <li class="page-product" [ngClass]="previousClass" *ngIf="page!=0"><a class="page-link previous" aria-label="anterior" (click)="setPage(-1)">Anterior</a>
+        </li>
+        <li class="page-product" [ngClass]="nextClass" *ngIf="page+1<totalPage"><a class="page-link next" aria-label="siguiente" (click)="setPage(1)">Siguiente</a>
+        </li>
+    </ul>
+</div>
