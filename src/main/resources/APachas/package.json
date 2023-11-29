@@ -7,6 +7,7 @@
     "start": "./node_modules/.bin/ng serve --open --host 0.0.0.0",
     "start-develop": "./node_modules/.bin/ng serve --open --host 0.0.0.0 --configuration development",
     "start-production": "./node_modules/.bin/ng serve --open --host 0.0.0.0 --configuration production",
+    "build": "./node_modules/.bin/ng build",
     "build-develop": "./node_modules/.bin/ng build --configuration development",
     "build-production": "./node_modules/.bin/ng build --configuration production --output-hashing none",
     "test": "./node_modules/.bin/ng test"
