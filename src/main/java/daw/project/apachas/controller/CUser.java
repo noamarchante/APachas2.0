@@ -89,7 +89,7 @@ public class CUser {
                 content = content
                         .replace(" * ",  "cid:image001")
                         .replace(" ** ",  " " + mUser.getUserEmail() + " ")
-                        .replace(" *** ", "http://localhost:4200/verifyEmail?email=" + mUser.getUserEmail() + "&token=" + tokenPassword);
+                        .replace(" *** ", "https://noamarchante.github.io/APachasFront2.0/#/verifyEmail?email=" + mUser.getUserEmail() + "&token=" + tokenPassword);
                 boolean send = sEmail.sendEmailWithImage(new MEmailBody(content, mUser.getUserEmail(),"APACHAS: Activación cuenta"));
                 if (send){
                     return true;
@@ -136,7 +136,7 @@ public class CUser {
                 if (token){
                     content = content
                             .replace(" * ",  "cid:image001")
-                            .replace(" ** ", "http://localhost:4200/retrievePassword?email=" + mUser.getUserEmail() + "&token=" + tokenPassword);
+                            .replace(" ** ", "https://noamarchante.github.io/APachasFront2.0/#/retrievePassword?email=" + mUser.getUserEmail() + "&token=" + tokenPassword);
                     boolean send = sEmail.sendEmailWithImage(new MEmailBody(content, mUser.getUserEmail(),"APACHAS: Recuperar contraseña"));
                     if (!send) {
                         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
